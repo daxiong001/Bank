@@ -18,7 +18,7 @@ public class Customer {
         return lastName;
     }
 
-    public void setAccount(){
+    public void setAccount(SavingAccount savingAccount){
         this.account = account;
     }
 
