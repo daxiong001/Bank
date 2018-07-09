@@ -18,11 +18,11 @@ public class Customer {
         return lastName;
     }
 
-    public void setAccount(SavingAccount savingAccount){
+    public void setAccount(Account account){
         this.account = account;
     }
 
-    public Account getAccount(Account account){
+    public Account getAccount(){
         return account;
     }
 }
