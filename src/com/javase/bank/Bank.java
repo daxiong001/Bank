@@ -3,9 +3,17 @@ package com.javase.bank;
 public class Bank {
     private Customer[] customers;
     private int numberOfCustomers;
+    private static Bank instance;
 
-    public Bank(){
+    private Bank(){
         customers = new Customer[10];
+    }
+
+    public static Bank getInstance(){
+        if (instance == null){
+            instance = new Bank();
+        }
+        return instance;
     }
 
     public void addCustomer(String f,String l){

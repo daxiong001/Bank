@@ -15,11 +15,11 @@ public class Account {
         return true;
     }
 
-    public boolean withdraw(double amt){
+    public void withdraw(double amt){
         if (this.balance<amt){
-            return false;
+           throw new OverdraftException("资金不足",(amt-balance));
         }
         this.balance -= amt;
-        return true;
+
     }
 }

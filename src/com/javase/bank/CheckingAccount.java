@@ -1,30 +1,33 @@
 package com.javase.bank;
 
 public class CheckingAccount extends Account {
-    private double overdraftProtection;
+    private double OverdraftProtection = -1;
 
 
     public CheckingAccount(double init_balance) {
         super(init_balance);
     }
 
-    public CheckingAccount(double init_balance, double overdraftProtection) {
+
+    public CheckingAccount(double init_balance, double OverdraftProtection) {
         super(init_balance);
-        this.overdraftProtection = overdraftProtection;
+        this.OverdraftProtection = OverdraftProtection;
     }
 
-
     @Override
-    public boolean withdraw(double amt) {
+    public void withdraw(double amt) {
         if (this.balance >= amt){
             balance -= amt;
-        }else if (overdraftProtection >= (amt - balance)){
-                overdraftProtection -= (amt - balance);
+        }else if (OverdraftProtection == -1){
+            throw new OverdraftException("no overdraft protection",(amt-balance));
+        }
+        else if (OverdraftProtection>= (amt - balance)){
+            OverdraftProtection -= (amt - balance);
                 balance = 0;
         }else{
-            return false;
+            throw new OverdraftException("Insufficient funds for overdraft protection",(amt - balance));
         }
-        return true;
+
     }
 
 }
